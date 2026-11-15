@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+description: MKKH LABS seeded decision-quality regression
+
+prompts:
+  - file://prompts/decision.txt
+providers:
+  - echo
+defaultTest: file://shared/default_test.yaml
+tests: file://tests/seeded-regression.yaml

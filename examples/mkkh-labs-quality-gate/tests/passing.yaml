@@ -1,0 +1,35 @@
+- description: Proceed when every material claim has direct support
+  vars:
+    candidate: >-
+      {"decision":"Adopt the deterministic gate before adding model graders.","status":"proceed","claims":[{"text":"The reference suite uses only built-in deterministic assertions.","source_id":"promptfooconfig.yaml","support":"direct"},{"text":"The echo provider makes no model API call.","source_id":"provider:echo","support":"direct"}],"confidence_basis":"The executable fixture and provider configuration directly support both claims.","completeness":"complete","expected_impact":"Zero model-token cost for the baseline gate.","unresolved_evidence":[],"next_action":"Run the passing and seeded-regression fixtures in CI."}
+  assert:
+    - type: contains
+      metric: traceability
+      value: '"source_id":"promptfooconfig.yaml"'
+    - type: contains
+      metric: execution
+      value: '"next_action":"Run'
+
+- description: Mark the decision conditional when evidence remains unresolved
+  vars:
+    candidate: >-
+      {"decision":"Delay a production release threshold until a representative baseline exists.","status":"conditional","claims":[{"text":"The synthetic suite proves gate behavior but not production quality.","source_id":"verify-gate.mjs","support":"direct"}],"confidence_basis":"The fixture verifies mechanics only; no production target is configured.","completeness":"partial","expected_impact":"Prevents an unsupported release-readiness claim.","unresolved_evidence":["Representative production-like dataset","Approved risk thresholds"],"next_action":"Select one LAB target and record its baseline before enabling a blocking threshold."}
+  assert:
+    - type: contains
+      metric: uncertainty
+      value: '"status":"conditional"'
+    - type: contains
+      metric: uncertainty
+      value: '"completeness":"partial"'
+
+- description: Stop when a critical claim has no admissible evidence
+  vars:
+    candidate: >-
+      {"decision":"Do not publish the claimed performance improvement.","status":"stop","claims":[{"text":"No measured before-and-after result is available.","source_id":"evidence-register","support":"direct"}],"confidence_basis":"The evidence register contains no comparative measurement.","completeness":"partial","expected_impact":"Avoids publishing an unsupported quantitative claim.","unresolved_evidence":["Measured baseline","Measured post-change result","Cohort and evaluation dates"],"next_action":"Run the approved benchmark and preserve numerator, denominator, cohort, and dates."}
+  assert:
+    - type: contains
+      metric: release_safety
+      value: '"status":"stop"'
+    - type: contains
+      metric: release_safety
+      value: '"unresolved_evidence":['

@@ -1,0 +1,4 @@
+- description: Reject an unsupported certainty claim
+  vars:
+    candidate: >-
+      {"decision":"Ship immediately; success is guaranteed.","status":"proceed","claims":[],"confidence_basis":"The model sounded confident.","completeness":"complete","expected_impact":"Guaranteed improvement.","unresolved_evidence":[],"next_action":"Deploy to production."}

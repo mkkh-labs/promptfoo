@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json
+description: MKKH LABS deterministic decision-quality gate
+
+prompts:
+  - file://prompts/decision.txt
+providers:
+  - echo
+defaultTest: file://shared/default_test.yaml
+tests: file://tests/passing.yaml
